@@ -1,0 +1,79 @@
+<?php
+
+//Fake mailer using Fucking PHP Script...
+//Ramalingasamy M K.
+
+if(isset($_POST['to']) && isset($_POST['from']) && isset($_POST['fromname']) && isset($_POST['replyto']) && isset($_POST['subject']) && isset($_POST['message']))
+{
+	
+	$headers = 'From: '.$_POST['fromname'].' <'.$_POST['from'].'>' . "\r\n" .
+	    'Reply-To: '. $_POST['replyto'] . "\r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+      $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+	$mail = mail($_POST['to'],$_POST['subject'],$_POST['message'],$headers);
+	
+	if($mail)
+	{
+		$mail = '<div style="color:green">Mail sent.</div>';
+	} else {
+		$mail = '<div style="color:red">Error</div>';
+	}
+} else {
+	if(!isset($mail))
+	{
+		$mail = '<div style="color:red">Fill in all inputs</div>';
+	}
+}
+
+
+
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Email Sender</title>
+	</head>
+	<body>
+		<?php echo $mail; ?>
+		<form action="fakemail.php" method="post">
+			<table border="0">
+				<tr>
+					<td>Victim's Email: </td>
+					<td><input type="text" name="to"></td>
+				</tr>
+				
+				<tr>
+					<td>Fake From Email: </td>
+					<td><input type="text" name="from"></td>
+				</tr>
+				<tr>
+					<td>Fake From Name: </td>
+					<td><input type="text" name="fromname"></td>
+				</tr>				
+				<tr>
+					<td>Reply to: </td>
+					<td><input type="text" name="replyto"></td>
+				</tr>
+				
+				<tr>
+					<td>Subject: </td>
+					<td><input type="text" name="subject"></td>
+				</tr>
+				
+				
+				<tr>
+					<td>Message: </td>
+					<td><textarea name="message"></textarea></td>
+				</tr>
+				
+				
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="Send Email" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html> 
