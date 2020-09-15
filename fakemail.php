@@ -2,6 +2,7 @@
 
 //Fake mailer using PHP Script...
 //Ramalingasamy M K.
+//Techian kulandhai
 
 if(isset($_POST['to']) && isset($_POST['from']) && isset($_POST['fromname']) && isset($_POST['replyto']) && isset($_POST['subject']) && isset($_POST['message']))
 {
